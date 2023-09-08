@@ -5,10 +5,8 @@ import java.util.Scanner;
 public class ContaTerminal {
     public static void main(String[] args) {
 
-        String s = "1021\n067-8\nanderson silva de almeida\nanderson\n80\n80.80";
+        Scanner scanner = new Scanner(System.in);
 
-        //Scanner scanner = new Scanner(System.in);
-        Scanner scanner = new Scanner(s);
         int numeroAgencia = 0;
 
         while (numeroAgencia == 0) {

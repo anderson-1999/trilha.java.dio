@@ -1,4 +1,4 @@
-package sem.dominio;
+package banco.conta;
 
 import java.util.Scanner;
 
@@ -31,6 +31,7 @@ public class ContaTerminal {
             System.out.println("Por favor, digite o valor em conta!");
             saldo = gerarSaldo(scanner.nextLine());
         }
+        scanner.close();
 
         System.out.printf("Olá %s," +
                 " obrigado por criar uma conta em nosso banco, sua agência é %d," +
@@ -54,27 +55,27 @@ public class ContaTerminal {
 
     public static String numerarConta(String numero) {
 
-        boolean z = false;
-        String novoNumero = "";
+        boolean isNumero = false;
+        StringBuilder novoNumero = new StringBuilder();
         for(int i = 0; i < numero.length(); i++) {
 
-            novoNumero = novoNumero + (numero.charAt(i));
+            novoNumero.append(numero.charAt(i));
 
             if(i == (numero.length() - 2)){
-                z = numero.charAt(i) == '-';
-                novoNumero = novoNumero.concat("-");
+                isNumero = numero.charAt(i) == '-';
+                novoNumero = new StringBuilder(novoNumero.toString().concat("-"));
             }
 
-            if(!(Character.isDigit(numero.charAt(i))) && !z) {
+            if(!(Character.isDigit(numero.charAt(i))) && !isNumero) {
                 System.out.println("numero de conta inválido");
                 return "";
             }
         }
 
-        if (z){
+        if (isNumero){
             return numero;
         }
-        return novoNumero;
+        return novoNumero.toString();
     }
 
     public static double gerarSaldo(String numero) {
